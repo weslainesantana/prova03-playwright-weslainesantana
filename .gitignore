@@ -1,5 +1,12 @@
 node_modules/
-output/
 dist/
+output/
 artifacts/
+test-results/
+playwright-report/
+blob-report/
+trace.zip
 zerostep.config.json
+.env
+.vscode/
+.idea/
