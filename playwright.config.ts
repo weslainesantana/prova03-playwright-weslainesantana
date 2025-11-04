@@ -1,29 +1,34 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
+export default defineConfig({
   testDir: 'src/scenarios',
-  timeout: 120000,
+  timeout: 120_000,
   retries: 0,
+  expect: {
+    timeout: 30_000,
+  },
   use: {
     trace: 'on',
     locale: 'pt-BR',
-    headless: false,
+    headless: true, // 🔹 Mantenha headless no CI
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     screenshot: 'on',
-    video: 'off'
-  },
-  expect: {
-    timeout: 30000
+    video: 'off',
   },
   reporter: [
     [
       'html',
       {
         outputFolder: 'artifacts/report',
-        open: 'never'
-      }
-    ]
-  ]
-};
-export default config;
+        open: 'never',
+      },
+    ],
+  ],
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
+});
