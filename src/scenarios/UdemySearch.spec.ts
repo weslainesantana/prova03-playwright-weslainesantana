@@ -32,7 +32,6 @@ test.describe('Udemy - Busca e Carrinho', () => {
   });
 
   test('teste com IA', async ({ai}) => {
-    // Teste adicional para demonstração
     await ai("clique no botão de fazer login");
   });
 });
